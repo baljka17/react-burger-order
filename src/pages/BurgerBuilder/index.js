@@ -11,11 +11,27 @@ class BurgerBuilder extends Component {
       meat: 1,
     },
   };
-  ortNemeh = (orts) => {
-    console.log(orts);
+  ortsNemeh = (type) => {
+    const newIngredient = { ...this.state.ingredients };
+    newIngredient[type]++;
+    this.setState({ ingredients: newIngredient });
+    console.log(type + " : " + newIngredient[type]);
+  };
+  ortsHasah = (type) => {
+    const newIngredient = { ...this.state.ingredients };
+    if (newIngredient[type] > 0) {
+      newIngredient[type]--;
+      this.setState({ ingredients: newIngredient });
+      console.log(type + " : " + newIngredient[type]);
+    }
   };
   render() {
-    return <Burger ingred={this.state.ingredients} />;
+    return (
+      <div>
+        <Burger ingred={this.state.ingredients} />
+        <BuildControls ortsNemeh={this.ortsNemeh} ortsHasah={this.ortsHasah} />
+      </div>
+    );
   }
 }
 

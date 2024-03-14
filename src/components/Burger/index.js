@@ -8,9 +8,7 @@ const Burger = (props) => {
   const items = Object.entries(props.ingred);
   items.map((el, index) => {
     for (let i = 0; i < el[1]; i++) {
-      content.push(
-        <BurgerIngredient key={`${index}${i}`} type={el[0]} ingred={el} />
-      );
+      content.push(<BurgerIngredient key={`${index}${i}`} type={el[0]} />);
     }
   });
 
