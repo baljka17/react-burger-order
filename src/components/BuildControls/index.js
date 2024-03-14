@@ -5,30 +5,18 @@ import css from "./style.module.css";
 const BuildControls = (props) => {
   return (
     <div className={css.BuildControls}>
-      <BuildControl
-        type="salad"
-        orts="Салад"
-        ortsNemeh={props.ortsNemeh}
-        ortsHasah={props.ortsHasah}
-      />
-      <BuildControl
-        type="cheese"
-        orts="Бяслаг"
-        ortsNemeh={props.ortsNemeh}
-        ortsHasah={props.ortsHasah}
-      />
-      <BuildControl
-        type="meat"
-        orts="Үхрийн мах"
-        ortsNemeh={props.ortsNemeh}
-        ortsHasah={props.ortsHasah}
-      />
-      <BuildControl
-        type="bacon"
-        orts="Гахайн мах"
-        ortsNemeh={props.ortsNemeh}
-        ortsHasah={props.ortsHasah}
-      />
+      <p>Нийт үнийн дүн: {props.total}</p>
+      {Object.keys(props.names).map((el) => (
+        <BuildControl
+          key={el}
+          type={el}
+          orts={props.names[el]}
+          ortsNemeh={props.ortsNemeh}
+          ortsHasah={props.ortsHasah}
+        />
+      ))}
+
+      <button className={css.OrderButton}>Захиалах</button>
     </div>
   );
 };
