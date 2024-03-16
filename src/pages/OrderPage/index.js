@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import css from "./style.module.css";
 import Spinner from "../../components/General/Spinner";
 import Order from "../../components/Order";
-// import * as actions from "../../redux/actions/orderActions";
+import * as actions from "../../redux/actions/orderActions";
 
-import axios from "../../axios-order";
+import axios from "../../axios-orders";
 
 class OrderPage extends React.Component {
   state = {
@@ -26,7 +26,6 @@ class OrderPage extends React.Component {
       });
   }
   render() {
-    // console.log("=============", JSON.stringify(this.state.orders));
     return (
       <div>
         {this.props.loading ? (
@@ -39,19 +38,19 @@ class OrderPage extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     orders: state.orderReducer.orders,
-//     loading: state.orderReducer.loading,
-//     userId: state.signupReducer.userId,
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    orders: state.orderReducer.orders,
+    loading: state.orderReducer.loading,
+    userId: state.signupReducer.userId,
+  };
+};
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     loadOrders: (userId) => dispatch(actions.loadOrders(userId)),
-//   };
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadOrders: (userId) => dispatch(actions.loadOrders(userId)),
+  };
+};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(OrderPage);
-export default OrderPage;
+export default connect(mapStateToProps, mapDispatchToProps)(OrderPage);
+// export default OrderPage;
