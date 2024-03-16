@@ -1,22 +1,25 @@
 import React from "react";
-import Button from "../Button";
+import { connect } from "react-redux";
+
+import Button from "../General/Button";
 
 const OrderSummary = (props) => {
+  console.log("sum", props);
   return (
     <div>
       <h3>Таны захиалга</h3>
-      <p>Таны захиалга</p>
+      <p>Таны сонгосон орцууд: </p>
       <ul>
         {Object.keys(props.ingredients).map((el) => (
           <li key={el}>
-            {props.names[el]}: {props.ingredients[el]}
+            {props.ingredientNames[el]} : {props.ingredients[el]}
           </li>
         ))}
       </ul>
       <p>
         <strong>Захиалгын дүн: {props.price}₮ </strong>
       </p>
-      <p>Цааш үргэлжүүлэх үү?</p>
+      <p>Цаашаа үргэлжлүүлэх үү?</p>
       <Button daragdsan={props.onCancel} btnType="Danger" text="ТАТГАЛЗАХ" />
       <Button
         daragdsan={props.onContinue}
@@ -27,4 +30,12 @@ const OrderSummary = (props) => {
   );
 };
 
-export default OrderSummary;
+const mapStateToProps = (state) => {
+  return {
+    ingredients: state.burgerReducer.ingredients,
+    ingredientNames: state.burgerReducer.ingredientNames,
+    price: state.burgerReducer.totalPrice,
+  };
+};
+
+export default connect(mapStateToProps)(OrderSummary);

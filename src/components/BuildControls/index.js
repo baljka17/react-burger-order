@@ -16,7 +16,9 @@ const BuildControls = (props) => {
         />
       ))}
 
-      <button className={css.OrderButton}>Захиалах</button>
+      <button onClick={props.showConfirmModal} className={css.OrderButton}>
+        Захиалах
+      </button>
     </div>
   );
 };

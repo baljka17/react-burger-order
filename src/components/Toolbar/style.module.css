@@ -11,5 +11,12 @@
   padding: 0 20px;
   box-sizing: border-box;
   z-index: 90;
-  color: #fff;
+  color: white;
+  font-size: 20px;
+}
+
+@media (max-width: 500px) {
+  .HideOnMobile {
+    display: none;
+  }
 }

@@ -1,16 +1,41 @@
+import { Component } from "react";
 import Toolbar from "../../components/Toolbar";
+import SideBar from "../../components/SideBar";
 import BurgerBuilder from "../BurgerBuilder";
-import styles from "./style.module.css";
+import css from "./style.module.css";
+import OrderPage from "../OrderPage";
+import { Route, Routes, Switch } from "react-router-dom";
 
-function App() {
-  return (
-    <div className={styles.content}>
-      <Toolbar />
-      <div className="content">
-        <BurgerBuilder />
+class App extends Component {
+  state = {
+    showSidebar: false,
+  };
+
+  toggleSideBar = () => {
+    this.setState((prevState) => {
+      return { showSidebar: !prevState.showSidebar };
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <Toolbar toggleSideBar={this.toggleSideBar} />
+
+        <SideBar
+          showSidebar={this.state.showSidebar}
+          toggleSideBar={this.toggleSideBar}
+        />
+
+        <main className={css.Content}>
+          <Routes>
+            <Route path="/orders" component={OrderPage} />
+            <Route path="/" component={BurgerBuilder} />
+          </Routes>
+        </main>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
